@@ -1,5 +1,5 @@
 plugins {
-    id "org.jetbrains.intellij" version "0.4.1"
+    id "org.jetbrains.intellij" version "0.4.13"
 }
 
 repositories {
@@ -16,12 +16,17 @@ allprojects {
 
     apply plugin: 'org.jetbrains.intellij'
     intellij {
-        version 'IC-2018.3.3'
+        version 'IC-2019.2.4'
         pluginName 'MyNewPlugin'
+        // could be disabled for CI
+        downloadSources true
 
         //plugin dependencies, see https://github.com/JetBrains/gradle-intellij-plugin
         //plugins 'IntelliLang'
     }
+
+    // uncomment, if you don't need searchable options
+    // buildSearchableOptions.enabled = false
 
     publishPlugin {
         username 'your-jetbrains-username'
@@ -36,7 +41,7 @@ allprojects {
     // the coverage reports will be available at build/reports/coverage/test/html/index.html
     apply plugin: 'jacoco'
     jacoco {
-        toolVersion = "0.8.2"
+        toolVersion = "0.8.5"
         reportsDir = file("$buildDir/reports/coverage")
     }
     test {
